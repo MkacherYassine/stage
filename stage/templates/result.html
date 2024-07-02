@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Face Detection Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        .id-photo {
+            width: 132px;  /* Approx. 35mm at 96 DPI */
+            height: 170px; /* Approx. 45mm at 96 DPI */
+            border: 1px solid #ccc;
+            padding: 10px;
+            background: #f9f9f9;
+            margin: 0 auto;
+        }
+        a {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            color: #fff;
+            background-color: #007BFF;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Face Detection Result</h1>
+    {% if face_count == 1 %}
+        <p>One face detected.</p>
+        <div class="id-photo">
+            <img src="{{ url_for('uploaded_file', filename=output_image) }}" alt="Detected face" width="132" height="170">
+        </div>
+    {% else %}
+        <p>{{ face_count }} faces detected.</p>
+    {% endif %}
+    <a href="{{ url_for('upload_file') }}">Upload another image</a>
+</body>
+</html>
